@@ -175,7 +175,7 @@
                     <div class="mb-3">
                         <label for="retirement_age" class="form-label">Enter the age you plan to retire:</label>
                         <input type="number" class="form-control" id="retirement_age" name="retirement_age" required>
-                        <div id="retirementAgeError" class="error-message">Retirement age cannot be less than 67.</div>
+                        <div id="retirementAgeError" class="error-message">Retirement age cannot be less than 7.</div>
                     </div>
                     <div class="mb-3">
                         <label for="current_investment" class="form-label">How much do you currently have in
@@ -408,7 +408,7 @@
                     currentAgeError.style.display = 'none';
                 }
 
-                if (retirementAge < 18) {
+                if (retirementAge < 7) {
                     retirementAgeError.style.display = 'block';
                     valid = false;
                 } else {

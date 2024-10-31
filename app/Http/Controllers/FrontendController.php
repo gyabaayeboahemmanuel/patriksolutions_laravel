@@ -11,13 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
-    
     public function index(){
         $youtube = Youtube::all();
         $blogs = Blog::all();
          return view('blog.index')->with(['youtubes'=> $youtube, 'blogs'=>$blogs]);
         }
-
     function blogposts(){
         $blogs = Blog::all();
          return view('blog.blog-posts')->with('blogs', $blogs);

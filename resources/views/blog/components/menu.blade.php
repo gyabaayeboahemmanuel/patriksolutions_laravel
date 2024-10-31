@@ -19,8 +19,23 @@
                   <ul class="nav navbar-nav navbar-nav-first">
                        <li class="@yield('home-active')"><a href="{{ route('index')}}">Home</a></li>
                        <li class="@yield('blog-active')"><a href="{{route('blog-posts')}}">Blog</a></li>
-                       <li class="@yield('investment_calculator.index-active')"><a href="{{route('investment_calculator.index')}}">Investment Calculator</a></li>
-                       <li class="@yield('budget_calculator.index-active')"><a href="{{route('budget_calculator.index')}}">Budget Calculator</a></li>
+                         <!-- Calculators Dropdown -->
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Calculators <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="@yield('investment_calculator.index-active')">
+                    <a href="{{ route('investment_calculator.index') }}">Investment Calculator</a>
+                </li>
+                <li class="@yield('budget_calculator.index-active')">
+                    <a href="{{ route('budget_calculator.index') }}">Budget Calculator</a>
+                </li>
+                <li class="@yield('retirement_calculator.index-active')">
+                    <a href="{{ route('retirement_calculator.index') }}">Retirement Calculator</a>
+                </li>
+            </ul>
+        </li>
                        <li class="@yield('about-active')"><a href="{{route('about-us')}}">About Us</a></li>
                        {{-- <li><a href="{{route('team')}}">Authors</a></li> --}}
                        <li class="@yield('contact-active')"><a href="{{route('contact')}}">Contact Us</a></li>

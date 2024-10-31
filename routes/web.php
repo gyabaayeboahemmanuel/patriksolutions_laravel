@@ -1,5 +1,6 @@
 <?php
 
+// use App\Http\Controllers\BudgetCalculatorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\YoutubeController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\InvestmentCalculatorController;
+use App\Http\Controllers\RetirementCalculatorController;
 use App\Http\Controllers\BudgetCalculatorController;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
@@ -31,8 +33,18 @@ Route::get('/dashboard', function () {
 
 Route::get('/investment-calculator', [InvestmentCalculatorController::class, 'index'])->name('investment_calculator.index');
 Route::post('/investment-calculator', [InvestmentCalculatorController::class, 'calculate'])->name('investment_calculator.calculate');
+Route::get('/retirement-calculator', [RetirementCalculatorController::class, 'index'])->name('retirement_calculator.index');
+Route::post('/retirement-calculator', [RetirementCalculatorController::class, 'calculate'])->name('retirement_calculator.calculate');
 Route::get('/budget', [BudgetCalculatorController::class, 'index'])->name('budget_calculator.index');
-Route::post('/budget-calculator', [BudgetCalculatorController::class, 'calculate'])->name('budget_calculator.calculate');
+Route::get('/mybudgets', [BudgetCalculatorController::class, 'myBudgets'])->name('budget_calculator.list')->middleware(['auth', 'verified']);
+
+
+Route::get('/budget/{id}/delete', [BudgetCalculatorController::class, 'deleteBudget'])->name('budget_calculator.destroy')->middleware(['auth', 'verified']);
+// Route::get('/budget', [BudgetCalculatorController::class, 'index'])->name('budget_calculator.index');
+// Route::post('/budget-calculator', [BudgetCalculatorController::class, 'calculate'])->name('budget_calculator.calculate');
+Route::get('/budget/{month}/{year}', [BudgetCalculatorController::class, 'showMonthlyBudget'])->name('budget_calculator.show')->middleware(['auth', 'verified']);
+
+Route::post('/save', [BudgetCalculatorController::class, 'store'])->middleware(['auth', 'verified'])->name('budget_calculator.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
